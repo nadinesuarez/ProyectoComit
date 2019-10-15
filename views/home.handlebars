@@ -7,7 +7,6 @@
 </div>
 <img id="fondohome" src="background.png">
 
-<!-- Contenedor del resultado -->
 <div id="peliculas"></div>
 
 <script>
@@ -16,8 +15,6 @@
     //Send all data requests to:
     //http://www.omdbapi.com/?apikey=5971ce05&
 
-    //Poster API requests:
-    //http://img.omdbapi.com/?apikey=[yourkey]&
 
     const divPeliculas = document.getElementById("peliculas")
     const divZoomTapa = document.getElementById("zoomTapa")
@@ -50,32 +47,22 @@
 
         let filtroTitulo = document.getElementById("busqueda").value;
 
-        // Abro conexión para request GET a la url de la API que retorna el JSON con peliculas
         xhr.open("GET", `http://www.omdbapi.com/?apikey=5971ce05&s=${filtroTitulo}`);
-        // Envío el request
+
         xhr.send();
 
-        // Pongo texto "Consultando datos...." para que se lea mientras espera respuesta.
         divPeliculas.textContent = "Consultando datos....";
 
     }
 
 
-    /**
-     * Función alternativa a crearDivDisco con otra forma de resolución
-     * 
-     * @param {Object} datospelicula idem crearDivDisco
-     */
     function crearDivPelicula(datospelicula) {
 
-        // Creo un elemento div para contener todo lo que estoy creando
         let divRespuesta = document.createElement("div");
 
-        // Declaro una variable html y la inicializo con un string vacío
         let html = '';
         console.log ("datospeliculas:" + datospelicula)
 
-        // Concateno valores en esa variable formando un pedazo de código HTML
         html += `<div class="contenedor-pelicula">`;
         html += `<img src="${datospelicula.poster}">`;
         html += `<ul>`;
@@ -85,10 +72,8 @@
         html += `</ul>`;
         html += `</div>`;
 
-        // Asigno ese texto como HTML del div
         divRespuesta.innerHTML = html;
 
-        // Retorno el div
         return divRespuesta;
 
     }
